@@ -1,4 +1,3 @@
-import 'dart:svg';
 
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/rendering.dart';
