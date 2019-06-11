@@ -29,12 +29,7 @@ class EventCategoriesState extends State<EventCategories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text('Event Categories'),
-        ),
-      ),
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.blueGrey,
       body: _body(context),
     );
   }

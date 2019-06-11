@@ -1,23 +1,25 @@
 import 'dart:math';
 
 import 'package:flutter_web/material.dart';
+import 'package:gnc_event_registration/src/resources/ApiHelper.dart';
 import 'package:gnc_event_registration/src/constants/CategoriesConst.dart';
 import 'package:gnc_event_registration/src/constants/CardBackColorsConst.dart';
 
 import 'package:gnc_event_registration/src/models/EventCategooriesModel.dart';
 
 class WebCategories extends StatelessWidget {
-
   final dynamic constraints;
 
-  List<EventCategoriesModel> eventCategories = categories;
-  List<Color> cardColors = cardBackColors;
-    WebCategories(this.constraints){
-      if(eventCategories.length%2 != 0){
-        eventCategories.add(EventCategoriesModel('More', 'no'));
-      }
-    }
+  //List<EventCategoriesModel> eventCategories = categories;
 
+  //// HARD CODED CATEGORIES CARDS///
+  List<dynamic> eventCategories = tempCategories;
+  List<Color> cardColors = cardBackColors;
+  WebCategories(this.constraints) {
+    if (eventCategories.length % 2 != 0) {
+      eventCategories.add(EventCategoriesModel('More', 'no'));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,11 @@ class WebCategories extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[Text("Events", style: TextStyle(color: Colors.white, fontSize: 50),)],),
+          SizedBox(height: 30,),
           Expanded(
             child: GridView.builder(
               itemCount: eventCategories.length,
@@ -45,30 +52,41 @@ class WebCategories extends StatelessWidget {
   }
 
   _webCategoryCardView(BuildContext context, int index) {
-    Color thisCardColor = cardColors[Random().nextInt(7)];
+
+    /// TO DISPLAY RANDOM COLORS IN CARD, NOT NEEDED FOR HARD CODED///
+
+    //Color thisCardColor = cardColors[Random().nextInt(7)];
+
     return Container(
       margin: EdgeInsets.all(10),
       child: Card(
         //elevation: 10.0,
-        
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
-        color: thisCardColor,
+        color: tempCategories[index]["color"],
         child: new InkWell(
           // For Touch Events
-          onTap: () {},
-          
-          child: Center(child: Image(image: AssetImage("images/Workshops.png"))
-              // Text(
-              //   eventCategories[index].eventName,
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(
-              //       fontSize: 24,
-              //       color: Colors.black,
-              //       fontWeight: FontWeight.bold),
-              // ),
-              ),
+          onTap: () {
+            Navigator.pushNamed(context, '/list');
+          },
+
+          child: Center(
+
+            ///// TO DISPLAY TEXT FROM API /////
+            
+            // child: Text(
+            //   eventCategories[index].eventName,
+            //   textAlign: TextAlign.center,
+            //   style: TextStyle(
+            //       fontSize: 24,
+            //       color: Colors.white70,
+            //       fontWeight: FontWeight.bold),
+            // ),
+
+            child:  Image(image: AssetImage(tempCategories[index]["imagePath"]))
+          ),
         ),
       ),
     );
