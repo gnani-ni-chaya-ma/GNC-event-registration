@@ -1,16 +1,21 @@
-import 'package:flutter_web/material.dart';
-import 'package:gnc_event_registration/src/models/event-list/EventListModel.dart';
+import 'package:gnc_event_registration/src/models/event/EventModel.dart';
+import 'package:gnc_event_registration/src/resources/EventRepository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EventListBloc {
+  final _eventRespository = EventRepository();
+  final _eventListFetcher = PublishSubject<List<EventModel>>();
 
-  final _eventListStep = PublishSubject<EventListStepModel>();
-  Observable<EventListStepModel> get stepperSteps => _eventListStep;
+  Observable<List<EventModel>> get allEvents => _eventListFetcher.stream;
 
+  fetchAllEvents() async {
+    List<EventModel> eventList = await _eventRespository.fetchEvents();
+    _eventListFetcher.sink.add(eventList);
+  }
 
   dispose() {
-    _eventListStep.close();
+    _eventListFetcher.close();
   }
 }
 
-final bloc = EventListBloc();
+final eventBloc = EventListBloc();
