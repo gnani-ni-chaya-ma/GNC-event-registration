@@ -5,8 +5,8 @@ import 'package:gnc_event_registration/src/models/event/EventModel.dart';
 
 class WebLists extends StatefulWidget {
   final BoxConstraints constraints;
-
-  const WebLists({Key key, this.constraints}) : super(key: key);
+  final data;
+  const WebLists({Key key, this.constraints, this.data}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -22,10 +22,10 @@ class WebListState extends State<WebLists> {
 
   @override
   void initState() {
+    print(widget.data);
     // TODO: implement initState
     super.initState();
     controller.addListener(() {
-      print('${controller} before');
       setState(() {
         currentStepperStep = int.parse(controller.page.toString()).round();
         // controller.jumpToPage(currentStepperStep);
@@ -35,7 +35,6 @@ class WebListState extends State<WebLists> {
           duration: Duration(seconds: 10),
         );
       });
-      print('${controller} after');
     });
   }
 
@@ -136,7 +135,7 @@ class WebListState extends State<WebLists> {
                   style: TextStyle(fontSize: 40),
                 ),
                 Text(
-                  '${data.startDate} - ${data.endDate}' ,
+                  '${data.startDate} - ${data.endDate}',
                   style: TextStyle(fontSize: 20),
                 ),
               ],

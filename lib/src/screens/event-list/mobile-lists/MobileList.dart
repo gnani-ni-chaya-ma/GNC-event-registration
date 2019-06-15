@@ -4,8 +4,9 @@ import 'package:gnc_event_registration/src/models/event/EventModel.dart';
 
 class MobileLists extends StatelessWidget {
   final BoxConstraints constraints;
+  final data;
 
-  const MobileLists({Key key, this.constraints}) : super(key: key);
+  const MobileLists({Key key, this.constraints, this.data}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
