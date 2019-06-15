@@ -1,10 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter_web/material.dart';
 import 'package:gnc_event_registration/src/constants/CategoriesConst.dart';
-import 'package:gnc_event_registration/src/models/EventCategooriesModel.dart';
-
-import 'package:gnc_event_registration/src/constants/CardBackColorsConst.dart';
 
 class MobileCategories extends StatelessWidget {
   dynamic constraints;
@@ -21,9 +16,19 @@ class MobileCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child:Text("Events")),),
-      backgroundColor: Colors.blueGrey,
-      body: _buildMobileView(),
+        appBar: AppBar(
+        title: Center(child: Text("Events")),
+    ),
+    backgroundColor: Colors.blueGrey,
+    body: TextFormField(
+    decoration: InputDecoration(
+    prefixIcon: Icon(Icons.account_box),
+    border: OutlineInputBorder(),
+    fillColor: Colors.white70,
+    filled: true,
+    hintText: "Enter Your First Name",
+    ),)
+//      _buildMobileView(),
     );
   }
 
@@ -40,7 +45,10 @@ class MobileCategories extends StatelessWidget {
     //Color thisCardColor = cardColors[Random().nextInt(7)];
 
     return Container(
-      height: MediaQuery.of(context).size.height / 4,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height / 4,
       padding: EdgeInsets.only(top: 30, right: 15, left: 15),
       child: Card(
           color: tempCategories[index]["color"],
@@ -54,7 +62,8 @@ class MobileCategories extends StatelessWidget {
             },
             child: Center(
               child: Center(
-                child: Image(image: AssetImage(tempCategories[index]["imagePath"])),
+                child: Image(
+                    image: AssetImage(tempCategories[index]["imagePath"])),
                 // child: Text(
                 //   eventCategories[index].eventName,
                 //   style: TextStyle(fontSize: 30),
