@@ -26,7 +26,17 @@ class MobileEventFormState extends State<MobileEventForm> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildForm();
+    return Scaffold(
+      appBar: _appBar(),
+      body: _buildForm(),
+    );
+  }
+
+  _appBar() {
+    return AppBar(
+        title: Center(
+      child: Text('Event Form'),
+    ));
   }
 
   _buildForm() {
@@ -37,13 +47,18 @@ class MobileEventFormState extends State<MobileEventForm> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              _firstName(),
-              _lastName(),
-              _mobileNumber(),
-              _email(),
-              _ymhtCenter(),
-              _dobSelector(),
+              commonInputField(Icon(Icons.account_box), "First Name",
+                  'First Name should not be empty'),
+              commonInputField(Icon(Icons.account_box), "Last Name",
+                  'Last Name should not be empty'),
+              commonInputField(Icon(Icons.phone), "Mobile Number",
+                  'Enter Valid Mobile Number'),
+              commonInputField(Icon(Icons.alternate_email), "Email Address",
+                  'Enter Valid Email Address'),
+              commonDatePicker(),
               _roleSelector(),
+              commonInputField(Icon(Icons.location_on), "YMHT Center",
+                  'Enter Valid YMHT Center'),
               SizedBox(
                 height: 30,
               ),
@@ -55,16 +70,16 @@ class MobileEventFormState extends State<MobileEventForm> {
     );
   }
 
-  _firstName() {
+  commonInputField(Icon icon, String hintText, String validationText) {
     return Container(
       padding: EdgeInsets.all(5),
       child: TextFormField(
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.account_box),
+          prefixIcon: icon,
           border: OutlineInputBorder(),
           fillColor: Colors.white70,
           filled: true,
-          hintText: "First Name",
+          hintText: hintText,
         ),
         validator: (String value) {
           try {
@@ -72,7 +87,7 @@ class MobileEventFormState extends State<MobileEventForm> {
               throw Exception;
             }
           } catch (e) {
-            return 'First Name should not be empty';
+            return validationText;
           }
           return null;
         },
@@ -80,84 +95,7 @@ class MobileEventFormState extends State<MobileEventForm> {
     );
   }
 
-  _lastName() {
-    return Container(
-      padding: EdgeInsets.all(5),
-      child: TextFormField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.account_box),
-          border: OutlineInputBorder(),
-          fillColor: Colors.white70,
-          filled: true,
-          hintText: "Last Name",
-        ),
-        validator: (String value) {
-          try {
-            if (!isAlpha(value) || value.isEmpty) {
-              throw Exception;
-            }
-          } catch (e) {
-            return 'Last Name should not be empty';
-          }
-          return null;
-        },
-      ),
-    );
-  }
-
-  _mobileNumber() {
-    return Container(
-      padding: EdgeInsets.all(5),
-      child: TextFormField(
-        keyboardType: TextInputType.numberWithOptions(),
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.phone),
-          border: OutlineInputBorder(),
-          fillColor: Colors.white70,
-          filled: true,
-          hintText: "Mobile Number",
-        ),
-        validator: (String value) {
-          try {
-            if (!isLength(value, 10, 10) || !isNumeric(value)) {
-              throw Exception;
-            }
-          } catch (e) {
-            return 'Enter Valid Mobile Number';
-          }
-          return null;
-        },
-      ),
-    );
-  }
-
-  _email() {
-    return Container(
-      padding: EdgeInsets.all(5),
-      child: TextFormField(
-        keyboardType: TextInputType.numberWithOptions(),
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.alternate_email),
-          border: OutlineInputBorder(),
-          fillColor: Colors.white70,
-          filled: true,
-          hintText: "Email Address",
-        ),
-        validator: (String value) {
-          try {
-            if (!isEmail(value)) {
-              throw Exception;
-            }
-          } catch (e) {
-            return 'Enter Valid Email Address';
-          }
-          return null;
-        },
-      ),
-    );
-  }
-
-  _dobSelector() {
+  commonDatePicker() {
     return Container(
       padding: EdgeInsets.all(5),
       child: RaisedButton(
@@ -263,32 +201,6 @@ class MobileEventFormState extends State<MobileEventForm> {
               ],
             ),
           );
-  }
-
-  _ymhtCenter() {
-    return Container(
-      padding: EdgeInsets.all(5),
-      child: TextFormField(
-        keyboardType: TextInputType.numberWithOptions(),
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.location_on),
-          border: OutlineInputBorder(),
-          fillColor: Colors.white70,
-          filled: true,
-          hintText: "YMHT Center",
-        ),
-        validator: (String value) {
-          try {
-            if (!isAlpha(value) || value.isEmpty) {
-              throw Exception;
-            }
-          } catch (e) {
-            return 'Enter Valid YMHT Center';
-          }
-          return null;
-        },
-      ),
-    );
   }
 
   _submitButton() {

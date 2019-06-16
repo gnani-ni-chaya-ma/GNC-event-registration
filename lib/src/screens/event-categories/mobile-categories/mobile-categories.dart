@@ -15,21 +15,21 @@ class MobileCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-        title: Center(child: Text("Events")),
-    ),
-    backgroundColor: Colors.blueGrey,
-    body: TextFormField(
-    decoration: InputDecoration(
-    prefixIcon: Icon(Icons.account_box),
-    border: OutlineInputBorder(),
-    fillColor: Colors.white70,
-    filled: true,
-    hintText: "Enter Your First Name",
-    ),)
-//      _buildMobileView(),
-    );
+    // return Scaffold(
+    //     appBar: AppBar(
+    //     title: Center(child: Text("Events")),
+    // ),
+    // backgroundColor: Colors.blueGrey,
+    // body: TextFormField(
+    // decoration: InputDecoration(
+    // prefixIcon: Icon(Icons.account_box),
+    // border: OutlineInputBorder(),
+    // fillColor: Colors.white70,
+    // filled: true,
+    // hintText: "Enter Your First Name",
+    // ),)
+    // );
+    return _buildMobileView();
   }
 
   _buildMobileView() {
@@ -45,10 +45,7 @@ class MobileCategories extends StatelessWidget {
     //Color thisCardColor = cardColors[Random().nextInt(7)];
 
     return Container(
-      height: MediaQuery
-          .of(context)
-          .size
-          .height / 4,
+      height: MediaQuery.of(context).size.height / 4,
       padding: EdgeInsets.only(top: 30, right: 15, left: 15),
       child: Card(
           color: tempCategories[index]["color"],

@@ -95,10 +95,13 @@ class WebListState extends State<WebLists> {
         children: List.generate(
           eventListConst.length,
           (index) {
-            return Container(
-              margin: EdgeInsets.only(top: 30, bottom: 30),
-              padding: EdgeInsets.all(30),
-              child: listCardView(eventListConst[index]),
+            return InkWell(
+              onTap: () => Navigator.pushNamed(context, '/form'),
+              child: Container(
+                margin: EdgeInsets.only(top: 30, bottom: 30),
+                padding: EdgeInsets.all(30),
+                child: listCardView(eventListConst[index]),
+              ),
             );
           },
         ),
