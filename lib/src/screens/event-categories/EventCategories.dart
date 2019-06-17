@@ -1,4 +1,5 @@
 import 'package:flutter_web/material.dart';
+import 'package:gnc_event_registration/src/blocs/event-list/EventListBloc.dart';
 
 import '../../models/EventCategooriesModel.dart';
 import 'package:gnc_event_registration/src/constants/CategoriesConst.dart';
@@ -23,7 +24,7 @@ class EventCategoriesState extends State<EventCategories> {
   void initState() {
     super.initState();
     count = num.parse((eventCategories.length / 2).toStringAsFixed(0));
-    print(count);
+    eventBloc.fetchAllEvents();
   }
 
   @override

@@ -4,7 +4,7 @@ import 'package:gnc_event_registration/src/models/event/EventModel.dart';
 import 'package:http/http.dart' as http;
 
 class Apihelper {
-  Future<List<EventModel>> getCategoryEvents(String category) async {
+  Future<List<EventModel>> getCategoryEvents() async {
     var url =
         "http://ec2-13-232-87-27.ap-south-1.compute.amazonaws.com/events/?active=true&format=json";
     final response = await http.get(url);
@@ -22,4 +22,3 @@ class Apihelper {
     }
   }
 }
-

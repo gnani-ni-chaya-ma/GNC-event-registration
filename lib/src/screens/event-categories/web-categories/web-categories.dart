@@ -6,6 +6,7 @@ import 'package:gnc_event_registration/src/constants/CategoriesConst.dart';
 import 'package:gnc_event_registration/src/constants/CardBackColorsConst.dart';
 
 import 'package:gnc_event_registration/src/models/EventCategooriesModel.dart';
+import 'package:gnc_event_registration/src/screens/event-list/EventList.dart';
 
 class WebCategories extends StatelessWidget {
   final dynamic constraints;
@@ -28,11 +29,21 @@ class WebCategories extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 40,),
+          SizedBox(
+            height: 40,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[Text("Events", style: TextStyle(color: Colors.white, fontSize: 50),)],),
-          SizedBox(height: 30,),
+            children: <Widget>[
+              Text(
+                "Events",
+                style: TextStyle(color: Colors.white, fontSize: 50),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
           Expanded(
             child: GridView.builder(
               itemCount: eventCategories.length,
@@ -52,7 +63,6 @@ class WebCategories extends StatelessWidget {
   }
 
   _webCategoryCardView(BuildContext context, int index) {
-
     /// TO DISPLAY RANDOM COLORS IN CARD, NOT NEEDED FOR HARD CODED///
 
     //Color thisCardColor = cardColors[Random().nextInt(7)];
@@ -69,24 +79,30 @@ class WebCategories extends StatelessWidget {
         child: new InkWell(
           // For Touch Events
           onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EventList(selectedCategori: index),
+              ),
+            );
             Navigator.pushNamed(context, '/list');
           },
 
           child: Center(
 
-            ///// TO DISPLAY TEXT FROM API /////
-            
-            // child: Text(
-            //   eventCategories[index].eventName,
-            //   textAlign: TextAlign.center,
-            //   style: TextStyle(
-            //       fontSize: 24,
-            //       color: Colors.white70,
-            //       fontWeight: FontWeight.bold),
-            // ),
+              ///// TO DISPLAY TEXT FROM API /////
 
-            child:  Image(image: AssetImage(tempCategories[index]["imagePath"]))
-          ),
+              // child: Text(
+              //   eventCategories[index].eventName,
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //       fontSize: 24,
+              //       color: Colors.white70,
+              //       fontWeight: FontWeight.bold),
+              // ),
+
+              child:
+                  Image(image: AssetImage(tempCategories[index]["imagePath"]))),
         ),
       ),
     );
