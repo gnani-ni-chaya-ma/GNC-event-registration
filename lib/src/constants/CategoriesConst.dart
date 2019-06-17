@@ -15,8 +15,15 @@ List<EventCategoriesModel> categories = [
 ];
 
 List<dynamic> tempCategories = [
-  {"imagePath": "images/Workshops.png", "color": Colors.yellow},
   {"imagePath": "images/summer_camp.png", "color": Colors.purpleAccent},
   {"imagePath": "images/yuva_camp.png", "color": Colors.orangeAccent},
-  {"imagePath": "images/yuva_pro.png", "color": Colors.greenAccent}
+  {"imagePath": "images/yuva_pro.png", "color": Colors.greenAccent},
+  {"imagePath": "images/Workshops.png", "color": Colors.orangeAccent},
 ];
+
+enum categoriesList {
+  summerCamp,
+  yuvacamp,
+  yuvaProCamp,
+  workshops,
+}

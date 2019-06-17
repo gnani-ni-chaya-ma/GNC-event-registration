@@ -1,3 +1,5 @@
+import 'package:flutter_web_ui/ui.dart';
+
 class EventModel {
   int id;
   Venue venue;
@@ -17,6 +19,7 @@ class EventModel {
   String remarks;
   bool active;
   int center;
+  Color color;
 
   EventModel(
       {this.id,
@@ -36,7 +39,8 @@ class EventModel {
       this.rules,
       this.remarks,
       this.active,
-      this.center});
+      this.center,
+      this.color});
 
   EventModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -57,6 +61,7 @@ class EventModel {
     remarks = json['remarks'];
     active = json['active'];
     center = json['center'];
+    color = json['color'];
   }
 
   Map<String, dynamic> toJson() {
@@ -81,6 +86,7 @@ class EventModel {
     data['remarks'] = this.remarks;
     data['active'] = this.active;
     data['center'] = this.center;
+    data['color'] = this.color;
     return data;
   }
 }
