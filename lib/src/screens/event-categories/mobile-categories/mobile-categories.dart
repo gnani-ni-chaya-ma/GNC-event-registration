@@ -1,10 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter_web/material.dart';
 import 'package:gnc_event_registration/src/constants/CategoriesConst.dart';
-import 'package:gnc_event_registration/src/models/EventCategooriesModel.dart';
-
-import 'package:gnc_event_registration/src/constants/CardBackColorsConst.dart';
 
 class MobileCategories extends StatelessWidget {
   dynamic constraints;
@@ -20,11 +15,21 @@ class MobileCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Center(child:Text("Events")),),
-      backgroundColor: Colors.blueGrey,
-      body: _buildMobileView(),
-    );
+    // return Scaffold(
+    //     appBar: AppBar(
+    //     title: Center(child: Text("Events")),
+    // ),
+    // backgroundColor: Colors.blueGrey,
+    // body: TextFormField(
+    // decoration: InputDecoration(
+    // prefixIcon: Icon(Icons.account_box),
+    // border: OutlineInputBorder(),
+    // fillColor: Colors.white70,
+    // filled: true,
+    // hintText: "Enter Your First Name",
+    // ),)
+    // );
+    return _buildMobileView();
   }
 
   _buildMobileView() {
@@ -54,7 +59,8 @@ class MobileCategories extends StatelessWidget {
             },
             child: Center(
               child: Center(
-                child: Image(image: AssetImage(tempCategories[index]["imagePath"])),
+                child: Image(
+                    image: AssetImage(tempCategories[index]["imagePath"])),
                 // child: Text(
                 //   eventCategories[index].eventName,
                 //   style: TextStyle(fontSize: 30),

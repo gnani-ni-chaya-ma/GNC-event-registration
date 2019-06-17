@@ -1,4 +1,5 @@
 import 'package:flutter_web/material.dart';
+import 'package:gnc_event_registration/src/screens/event-form/EventForm.dart';
 
 import 'screens/event-categories/EventCategories.dart';
 import 'screens/event-list/EventList.dart';
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
     return MaterialApp(home: EventCategories(), routes: <String, WidgetBuilder>{
       '/categories': (BuildContext context) => new EventCategories(),
       '/list': (BuildContext context) => new EventList(),
+      '/form': (BuildContext context) => new EventForm(),
     });
   }
 }
